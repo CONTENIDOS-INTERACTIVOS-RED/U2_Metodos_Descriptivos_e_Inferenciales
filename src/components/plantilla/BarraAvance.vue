@@ -1,0 +1,412 @@
+<template lang="pug">
+.barra-avance(:class="[showBarra ? 'barra-avance--open' : 'barra-avance--close']")
+
+  span.me-auto.ps-2.ms-1 Unidad {{ `${globalData.numeroUnidad}` }}
+
+  router-link.barra-avance__boton--regresar(
+    :class="[!controlLinks.back.name && 'barra-avance__boton--disable']"
+    :to="{name: controlLinks.back.name, hash: controlLinks.back.hash ? `#${controlLinks.back.hash}` : ''}"
+  )
+    div.content
+      i.me-3(class="fas fa-arrow-left")
+      span Regresar
+  
+  //- .barra-avance__barra
+  //-   .barra-avance__barra--blanca
+  //-   .barra-avance__barra--amarilla
+
+  router-link.barra-avance__boton--siguiente(
+    :class="[!controlLinks.next.name && 'barra-avance__boton--disable']"
+    :to="{name: controlLinks.next.name, hash: controlLinks.next.hash ? `#${controlLinks.next.hash}` : ''}"
+  )
+    div.content
+      span.me-3 Siguiente
+      i(class="fas fa-arrow-right")
+
+</template>
+
+<script>
+export default {
+  name: 'BarraAvance',
+  data: () => ({
+    cursoSelection: null,
+    idSelecctionArr: [],
+  }),
+  computed: {
+    menuData() {
+      return this.$config.menuPrincipal.menu
+    },
+    globalData() {
+      return this.$config.global
+    },
+    showBarra() {
+      const enIntro = this.$route.fullPath.includes('/introduccion')
+      const enCurso = this.$route.fullPath.includes('/curso')
+      const haveControls =
+        (this.controlLinks.next && this.controlLinks.next.name) ||
+        (this.controlLinks.back && this.controlLinks.back.name)
+      return !this.menuOpen && (enIntro || enCurso) && haveControls
+    },
+    // controlLinks() {
+    //   const menuObject = this.menuData.find(
+    //     item => item.nombreRuta === this.$route.name,
+    //   )
+    //   if (this.$route.name === 'introduccion') {
+    //     // SI ESTOY EN INTRODUCCION
+    //     const tema1 = this.menuData.find(item => item.nombreRuta === 'tema1')
+    //     return {
+    //       next: {
+    //         name: tema1.nombreRuta,
+    //         hash: '',
+    //       },
+    //       back: {
+    //         name: '',
+    //         hash: '',
+    //       },
+    //     }
+    //   } else if (!menuObject) {
+    //     // SI NO ESTOY EN UN TEMA O SI NO HAY SUBTEMAS --ERROR FALLBACK
+    //     return {
+    //       next: {
+    //         name: '',
+    //         hash: '',
+    //       },
+    //       back: {
+    //         name: '',
+    //         hash: '',
+    //       },
+    //     }
+    //   } else {
+    //     // SI ESTOY EN UN TEMA
+
+    //     let routeObj = {}
+    //     const idxOfMenuItem = this.menuData
+    //       .map(item => item.nombreRuta)
+    //       .indexOf(this.$route.name)
+
+    //     if (menuObject.subMenu) {
+    //       // MENU ITEM TIENE SUBMENU
+    //       const idxCurrentHash = menuObject.subMenu
+    //         .map(item => item.hash)
+    //         .indexOf(this.$route.hash.replace('#', ''))
+
+    //       // back logic
+    //       if (idxCurrentHash <= 0) {
+    //         // SI NO HAY SELECCIONADO UN HASH O ESTA SELECCIONADO EL PRIMERO
+    //         const backMenuItem = this.menuData[idxOfMenuItem - 1]
+
+    //         const backIsTheme =
+    //           backMenuItem && backMenuItem.nombreRuta.includes('tema')
+    //         const backIsIntro =
+    //           backMenuItem && backMenuItem.nombreRuta.includes('introduccion')
+
+    //         if (backIsTheme || backIsIntro) {
+    //           // si el anterior objeto es un tema o introduccion
+    //           routeObj.back = {
+    //             name: backMenuItem.nombreRuta,
+    //             hash: '',
+    //           }
+    //         } else {
+    //           // si el objeto anterior no es tema o introduccion
+    //           routeObj.back = {
+    //             name: '',
+    //             hash: '',
+    //           }
+    //         }
+    //       } else if (idxCurrentHash === menuObject.subMenu.length - 1) {
+    //         // SI EL ULTIMO HASH ESTA SELECCIONADO
+    //         const backHash = menuObject.subMenu[idxCurrentHash - 1].hash
+
+    //         routeObj.back = {
+    //           name: this.$route.name,
+    //           hash: backHash,
+    //         }
+    //       } else {
+    //         // SI ESTOY ENMEDIO DE LOS HASH
+    //         routeObj.back = {
+    //           name: this.$route.name,
+    //           hash: menuObject.subMenu[idxCurrentHash - 1].hash,
+    //         }
+    //       }
+
+    //       // Next Logic
+    //       if (idxCurrentHash === menuObject.subMenu.length - 1) {
+    //         // es el ultimo hash seleccionado
+    //         const nextMenuItem = this.menuData[idxOfMenuItem + 1]
+
+    //         const nextIsTheme =
+    //           nextMenuItem && nextMenuItem.nombreRuta.includes('tema')
+
+    //         if (nextIsTheme) {
+    //           // el siguiente objeto del menu es tema
+    //           routeObj.next = {
+    //             name: nextMenuItem.nombreRuta,
+    //             hash: '',
+    //           }
+    //         } else {
+    //           // si es el ultimo tema
+    //           routeObj.next = {
+    //             name: '',
+    //             hash: '',
+    //           }
+    //         }
+    //       } else {
+    //         // no estoy en el ultimo hash
+    //         const nextSubMenuItem = menuObject.subMenu[idxCurrentHash + 1]
+    //         const nextHash = nextSubMenuItem.hash
+    //         routeObj.next = {
+    //           name: this.$route.name,
+    //           hash: nextHash,
+    //         }
+    //       }
+    //     } else {
+    //       // MENU ITEM NO TIENE SUBMENU
+
+    //       // Back logic
+    //       const backMenuItem = this.menuData[idxOfMenuItem - 1]
+
+    //       const backIsTheme =
+    //         backMenuItem && backMenuItem.nombreRuta.includes('tema')
+    //       const backIsIntro =
+    //         backMenuItem && backMenuItem.nombreRuta.includes('introduccion')
+
+    //       if (backIsTheme || backIsIntro) {
+    //         // si el anterior objeto es un tema o introduccion
+    //         routeObj.back = {
+    //           name: backMenuItem.nombreRuta,
+    //           hash: '',
+    //         }
+    //       } else {
+    //         // si el objeto anterior no es tema o introduccion
+    //         routeObj.back = {
+    //           name: '',
+    //           hash: '',
+    //         }
+    //       }
+
+    //       // Next logic
+    //       const nextMenuItem = this.menuData[idxOfMenuItem + 1]
+
+    //       const nextIsTheme =
+    //         nextMenuItem && nextMenuItem.nombreRuta.includes('tema')
+
+    //       if (nextIsTheme) {
+    //         // el siguiente objeto del menu es tema
+    //         routeObj.next = {
+    //           name: nextMenuItem.nombreRuta,
+    //           hash: '',
+    //         }
+    //       } else {
+    //         // si es el ultimo tema
+    //         routeObj.next = {
+    //           name: '',
+    //           hash: '',
+    //         }
+    //       }
+    //     }
+    //     return routeObj
+    //   }
+    // },
+    controlLinks() {
+      const menuObject = this.menuData.find(
+        item => item.nombreRuta === this.$route.name,
+      )
+      if (this.$route.name === 'introduccion') {
+        // SI ESTOY EN INTRODUCCION
+        const tema1 = this.menuData.find(item => item.nombreRuta === 'tema1')
+        return {
+          next: {
+            name: tema1.nombreRuta,
+            hash: '',
+          },
+          back: {
+            name: '',
+            hash: '',
+          },
+        }
+      } else if (
+        // Si estoy en el ultimo tema
+        this.$route.name === this.menuData[this.menuData.length - 2].nombreRuta
+      ) {
+        return {
+          next: {
+            name: 'sintesis',
+            hash: '',
+          },
+          back: {
+            name: this.menuData[this.menuData.length - 3].nombreRuta,
+            hash: '',
+          },
+        }
+      } else if (!menuObject) {
+        // SI NO ESTOY EN UN TEMA O SI NO HAY SUBTEMAS --ERROR FALLBACK
+        return {
+          next: {
+            name: '',
+            hash: '',
+          },
+          back: {
+            name: '',
+            hash: '',
+          },
+        }
+      } else {
+        let routeObj = {}
+        const idxOfMenuItem = this.menuData
+          .map(item => item.nombreRuta)
+          .indexOf(this.$route.name)
+
+        // Back logic
+        const backMenuItem = this.menuData[idxOfMenuItem - 1]
+
+        const backIsTheme =
+          backMenuItem && backMenuItem.nombreRuta.includes('tema')
+        const backIsIntro =
+          backMenuItem && backMenuItem.nombreRuta.includes('introduccion')
+
+        if (backIsTheme || backIsIntro) {
+          // si el anterior objeto es un tema o introduccion
+          routeObj.back = {
+            name: backMenuItem.nombreRuta,
+            hash: '',
+          }
+        } else {
+          // si el objeto anterior no es tema o introduccion
+          routeObj.back = {
+            name: '',
+            hash: '',
+          }
+        }
+
+        // Next logic
+        const nextMenuItem = this.menuData[idxOfMenuItem + 1]
+
+        const nextIsTheme =
+          nextMenuItem && nextMenuItem.nombreRuta.includes('tema')
+
+        if (nextIsTheme) {
+          // el siguiente objeto del menu es tema
+          routeObj.next = {
+            name: nextMenuItem.nombreRuta,
+            hash: '',
+          }
+        } else {
+          // si es el ultimo tema
+          routeObj.next = {
+            name: '',
+            hash: '',
+          }
+        }
+        return routeObj
+      }
+    },
+    menuOpen() {
+      return this.$store.getters.isMenuOpen
+    },
+  },
+  // created() {
+  //   document.addEventListener('scroll', this.trackIds)
+  // },
+  // mounted() {
+  //   this.cursoSelection = document.querySelector('#curso')
+  //   const subMenuSelected = this.menuData.find(
+  //     item => item.nombreRuta === this.$route.name,
+  //   ).subMenu
+  //   this.idSelecctionArr = subMenuSelected
+  //     ? subMenuSelected.map(item => document.querySelector(`#${item.hash}`))
+  //     : []
+  // },
+  // methods: {
+  //   trackIds() {
+  //     if (!this.idSelecctionArr.length) return
+  //     this.idSelecctionArr.forEach(item => {
+  //       console.log(item.scrollTop)
+  //     })
+  //     const mao = document.querySelector('#t_1_5')
+  //     console.log(this.cursoSelection.clientHeight)
+  //     console.log(window.innerHeight, window.scrollY, mao.offsetTop)
+  //   },
+  // },
+}
+</script>
+
+<style lang="sass">
+.barra-avance
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  position: fixed
+  bottom: 0
+  left: 0
+  width: 100%
+  background-color: $white
+  border: 1px solid #E4E7EC
+  transition: transform 0.5s ease-in-out
+  z-index: 100000
+
+  &__barra
+    margin: 0 20px
+    flex: 1
+    position: relative
+    max-width: 800px
+
+    &--blanca, &--amarilla
+      height: 4px
+
+      &:before, &:after
+        content: ''
+        display: block
+        width: 10px
+        height: 10px
+        border-radius: 50%
+        position: absolute
+        top: 50%
+
+      &:before
+        left: 0
+        transform: translate(-50%,-50%)
+
+      &:after
+        right: 0
+        transform: translate(50%,-50%)
+
+    &--blanca
+      background-color: $white
+      &:before, &:after
+        background-color: $white
+
+    &--amarilla
+      position: absolute
+      width: 100%
+      top: 0
+      background-color: $color-acento-botones
+      &:before, &:after
+        background-color: $color-acento-botones
+
+  &__boton
+    &--regresar, &--siguiente
+      color: $color-sistema-texto
+      padding: 16px 22px
+      border-left: 1px solid #E4E7EC
+
+      .content
+        transition: transform 0.2s ease-in-out
+        transform: translateX(0%)
+
+    &--regresar:hover .content
+      transform: translateX(-6%)
+    &--siguiente:hover .content
+      transform: translateX(6%)
+
+    &--disable
+      pointer-events: none
+      color: #adb5bd !important
+      background-color: #e9ecef
+      opacity: 0.65
+
+  &--open
+    transform: translateY(0)
+
+  &--close
+    transform: translateY(100%)
+</style>

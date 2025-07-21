@@ -1,0 +1,132 @@
+.app
+
+.contenedor-principal
+  display: flex
+  align-items: flex-start
+
+.seccion-principal
+  width: 100%
+
+  &--barra-avance-open
+    .curso-main-container
+      padding-bottom: 80px !important
+  
+.insignia
+  display: inline-block
+  color: $white
+  background-color: $color-acento-contenido
+  border-radius: 0.5em
+  padding: 5px
+  line-height: 1em
+
+
+.tarjeta__template
+  &--azul-claro
+    background-color: $color-sistema-g
+
+.titulo
+  &__template
+    &--a
+      position: relative
+      padding-left: 20px
+      span
+        line-height: 1.1em
+      &::before
+        content: ''
+        display: block
+        width: 4px
+        background-color: $color-acento-contenido
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        border-radius: 2px
+
+.bg-full-width
+  background-size: cover
+  background-repeat: no-repeat
+  margin-inline: -3.3rem
+
+.container, .container-fluid
+  position: relative
+.container.tarjeta
+  overflow-y: hidden
+
+$custom-card-border-radius: 0px
+$custom-card-shadow: 0 4px 8px rgba(0,0,0,0.1)
+$custom-card-text-bg: #FFF
+$custom-card-text-padding: 15px
+$custom-card-text-font-size: 14px
+$custom-card-img-height: 322px
+.custom-image-card
+  border-radius: $custom-card-border-radius
+  overflow: hidden
+  box-shadow: $custom-card-shadow
+  height: 100%
+  background-color: $custom-card-text-bg
+  transition: transform 0.3s ease 
+  cursor: pointer
+  &:hover
+    transform: scale(1.01)
+  &__image
+    height: $custom-card-img-height
+    object-fit: cover
+
+.curso-main-container
+  min-height: 100vh
+  background-color: $color-sistema-g
+
+  &> .container
+    overflow-x: hidden
+    border-radius: 0
+    box-shadow: 0 0 5px 0px rgba(0,0,0,0.15)
+
+  &::after
+    content: ''
+    display: block
+    height: 1px
+
+hr
+  border-color: $color-sistema-c
+
+.video
+  width: 100%
+  border-radius: 10px
+
+.w-fit
+  width: fit-content
+
+.shadow-app
+  box-shadow: 0px 4px 8px -1px rgba(0,0,0,0.10)
+
+.pe-xl-8
+  @media (min-width: 1200px)
+    padding-right: 5rem
+
+
+// bootstrap override
+.carousel-control-next, .carousel-control-prev
+  background-color: transparent
+  border-radius: 0
+
+
+.separador-container
+  padding: 45px 0
+.separador
+  height: 20px
+  overflow: hidden
+  position: relative
+  &:after
+    content: ''
+    position: absolute
+    top: 0
+    left: 50%
+    display: block
+    background-color: $lighter-gray
+    width: 40%
+    height: 15px
+    filter: blur(5px)
+    transform: translate(-50%, -50%)
+    border-radius: 50%
+.border-top-9-azul
+  border-top: 9px solid #1172B3

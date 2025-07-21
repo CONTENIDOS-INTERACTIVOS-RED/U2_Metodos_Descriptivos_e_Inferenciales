@@ -1,0 +1,70 @@
+.imagen-titulo
+  position: relative
+  scale: 0.9
+  top: -15px
+  &:before
+    content: ''
+    display: block
+    position: absolute
+    width: 90%
+    height: 65%
+    bottom: -25px
+    border-radius: 0px 45px 0px 0px
+  
+  figure
+    position: relative
+
+  &__titulo
+    position: absolute
+    bottom: 10%
+    background-color: $color-secundario
+    padding: 10px
+
+  &--der
+    @extend .imagen-titulo
+    margin-right: 10px
+    &:before
+      right: -30px
+
+    .imagen-titulo
+      &__titulo
+        right: 0
+
+  &--izq
+    @extend .imagen-titulo
+    margin-left: 10px
+    &:before
+      left: -10px
+
+    .imagen-titulo
+      &__titulo
+        left: 0
+
+  &.color-primario
+    &:before
+      background-color: $color-primario
+    .imagen-titulo__titulo
+      background-color: $color-primario
+      *
+        color: textColor($color-primario)
+  &.color-secundario
+    &:before
+      background-color: $color-secundario
+    .imagen-titulo__titulo
+      background-color: $color-secundario
+      *
+        color: textColor($color-secundario)
+  &.color-acento-contenido
+    &:before
+      background-color: $color-acento-contenido
+    .imagen-titulo__titulo
+      background-color: $color-acento-contenido
+      *
+        color: textColor($color-acento-contenido)
+  &.color-acento-botones
+    &:before
+      background-color: $color-acento-botones
+    .imagen-titulo__titulo
+      background-color: $color-acento-botones
+      *
+        color: textColor($color-acento-botones)
