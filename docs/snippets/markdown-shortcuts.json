@@ -1,0 +1,256 @@
+{
+  "bloque-basico": {
+    "prefix": "bb",
+    "description": "Bloque básico con assets y texto",
+    "body": [
+      "## BLOQUE: ${1:nombre-snippet}${2: 8:4}",
+      "",
+      "//assets: ${3:imagen.png}",
+      "//texto",
+      "${4:Contenido del párrafo principal}",
+      "${5:Segundo párrafo del contenido}",
+      "$0"
+    ]
+  },
+  
+  "bloque-color": {
+    "prefix": "bc",
+    "description": "Bloque con texto y contenido de color",
+    "body": [
+      "## BLOQUE: ${1:imagen-color-texto}${2: 4:8}",
+      "",
+      "//assets: ${3:imagen.png}",
+      "//color",
+      "${4:Contenido que va en el bloque de color}",
+      "//texto",
+      "${5:Párrafo normal después del color}",
+      "${6:Segundo párrafo normal}",
+      "$0"
+    ]
+  },
+  
+  "bloque-iconobloque": {
+    "prefix": "bi",
+    "description": "Bloque con texto e iconobloque",
+    "body": [
+      "## BLOQUE: ${1:texto-iconobloque-imagen}",
+      "",
+      "//assets: ${2:imagen.png}",
+      "//texto",
+      "${3:Párrafo inicial del contenido}",
+      "//iconobloque", 
+      "${4:Contenido que va en el bloque con icono}",
+      "$0"
+    ]
+  },
+  
+  "tarjetas": {
+    "prefix": "tarj",
+    "description": "Bloque de tarjetas con jerarquía",
+    "body": [
+      "## BLOQUE: tarjetas-boton",
+      "",
+      "### ${1:Título Principal}",
+      "${2:Contenido de la primera tarjeta}",
+      "",
+      "#### ${3:Subtítulo}",
+      "${4:Contenido de la segunda tarjeta}",
+      "",
+      "##### ${5:Detalle Específico}",
+      "${6:Contenido de la tercera tarjeta}",
+      "$0"
+    ]
+  },
+  
+  "slider": {
+    "prefix": "sly",
+    "description": "Slider con múltiples slides",
+    "body": [
+      "## BLOQUE: slyder-${1:2}",
+      "",
+      "### ${2:Título Slide 1}",
+      "${3:Contenido del primer slide}",
+      "",
+      "#### ${4:Título Slide 2}",
+      "${5:Contenido del segundo slide}",
+      "$0"
+    ]
+  },
+  
+  "acordeon-simple": {
+    "prefix": "aco",
+    "description": "Acordeón básico con imagen",
+    "body": [
+      "## BLOQUE: img-aco${1: 4:8}",
+      "",
+      "//assets: ${2:imagen-lateral.png}",
+      "//acordeon",
+      "${3:Título Item 1}",
+      "${4:Contenido del primer item del acordeón}",
+      "",
+      "---",
+      "",
+      "${5:Título Item 2}",
+      "${6:Contenido del segundo item}",
+      "",
+      "---",
+      "",
+      "${7:Título Item 3}",
+      "${8:Contenido del tercer item}",
+      "$0"
+    ]
+  },
+  
+  "acordeon-imagenes": {
+    "prefix": "acoi",
+    "description": "Acordeón con imágenes internas",
+    "body": [
+      "## BLOQUE: acordeon-img${1: 8:4}",
+      "",
+      "//assets: ${2:imagen-lateral.png}",
+      "//acordeon",
+      "//assets: ${3:img1.png, img2.png, img3.png}",
+      "",
+      "${4:Título Item 1}",
+      "${5:Contenido del primer item}",
+      "${6:Segundo párrafo del primer item}",
+      "",
+      "---",
+      "",
+      "${7:Título Item 2}",
+      "${8:Contenido del segundo item}",
+      "",
+      "---",
+      "",
+      "${9:Título Item 3}",
+      "${10:Contenido del tercer item}",
+      "$0"
+    ]
+  },
+  
+  "figura": {
+    "prefix": "fig",
+    "description": "Figura académica completa",
+    "body": [
+      "## BLOQUE: figura-completa",
+      "",
+      "//assets: ${1:grafico.png}${2: (900px)}",
+      "",
+      "Figura ${3:1}.",
+      "${4:Título de la figura}",
+      "Nota. ${5:Descripción o fuente de la figura}",
+      "$0"
+    ]
+  },
+  
+  "titulo-seccion": {
+    "prefix": "tit",
+    "description": "Título de sección numerado",
+    "body": [
+      "## BLOQUE: titulo-segundo",
+      "",
+      "${1:1.1} ${2:Descripción del subtema}",
+      "$0"
+    ]
+  },
+  
+  "material-complementario": {
+    "prefix": "mat",
+    "description": "Sección de material complementario",
+    "body": [
+      "## BLOQUE: bloque-material-complementario",
+      "",
+      "${1:Los invitamos a explorar el material complementario que ampliará sus conocimientos sobre este tema.}",
+      "",
+      "${2:Autor, A. (2024). Título del libro. Editorial.}",
+      "${3:https://www.youtube.com/watch?v=ejemplo}",
+      "$0"
+    ]
+  },
+  
+  "assets-simples": {
+    "prefix": "//a",
+    "description": "Assets simple",
+    "body": [
+      "//assets: ${1:imagen.png}",
+      "$0"
+    ]
+  },
+  
+  "assets-tamaño": {
+    "prefix": "//at",
+    "description": "Assets con tamaño",
+    "body": [
+      "//assets: ${1:imagen.png} (${2:900px})",
+      "$0"
+    ]
+  },
+  
+  "assets-lista": {
+    "prefix": "//al",
+    "description": "Assets múltiples",
+    "body": [
+      "//assets: ${1:img1.png, img2.png, img3.png}",
+      "$0"
+    ]
+  },
+  
+  "texto": {
+    "prefix": "//t",
+    "description": "Marcador de texto",
+    "body": [
+      "//texto",
+      "${1:Primer párrafo del contenido}",
+      "${2:Segundo párrafo del contenido}",
+      "$0"
+    ]
+  },
+  
+  "color": {
+    "prefix": "//c",
+    "description": "Marcador de contenido de color",
+    "body": [
+      "//color",
+      "${1:Contenido que va en el bloque de color}",
+      "$0"
+    ]
+  },
+  
+  "iconobloque": {
+    "prefix": "//i",
+    "description": "Marcador de iconobloque",
+    "body": [
+      "//iconobloque",
+      "${1:Contenido que va en el bloque con icono}",
+      "$0"
+    ]
+  },
+  
+  "acordeon-inicio": {
+    "prefix": "//ac",
+    "description": "Inicio de acordeón",
+    "body": [
+      "//acordeon",
+      "${1:Título del primer item}",
+      "${2:Contenido del primer item}",
+      "",
+      "---",
+      "",
+      "${3:Título del segundo item}",
+      "${4:Contenido del segundo item}",
+      "$0"
+    ]
+  },
+  
+  "separador": {
+    "prefix": "---",
+    "description": "Separador de ítems de acordeón",
+    "body": [
+      "---",
+      "",
+      "${1:Título del siguiente item}",
+      "${2:Contenido del siguiente item}",
+      "$0"
+    ]
+  }
+}

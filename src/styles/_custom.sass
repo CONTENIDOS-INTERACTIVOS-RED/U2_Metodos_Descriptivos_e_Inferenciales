@@ -17,19 +17,31 @@
 
 .bg-color
   &-1
-    background-color: #EAF8FD
+    background-color: rgb(193, 240, 250)
   &-2
-    background-color: #FFFBE8
+    background-color: rgb(230, 240, 205)
   &-3
-    background-color: #F0E9F6
+    background-color: #F6F3EF
   &-4
-    background-color: #EAF8FD
+    background-color: #FFE1B9
+  &-5
+    background-color: #CEE29D
   &-info
-    background-color: #E8EEFD
+    background-color: #EAF2FB
   &-sintesis
     background-color: #F9F9F9
   &-white
     background-color: #fff
+
+.bg-gradiente
+  &-1
+    background: linear-gradient(0deg,rgba(255, 255, 255, 1) 0%, rgba(193, 240, 250, 1) 41%, rgba(193, 240, 250, 1) 60%, rgba(255, 255, 255, 1) 100%)
+  &-2
+    background: linear-gradient(0deg,rgba(255, 255, 255, 1) 0%, rgba(255, 244, 230, 1) 41%, rgba(255, 244, 230, 1) 60%, rgba(255, 255, 255, 1) 100%)
+  &-3
+    background: linear-gradient(0deg,rgba(255, 255, 255, 1) 0%, rgba(230, 240, 205, 1) 41%, rgba(230, 240, 205, 1) 60%, rgba(255, 255, 255, 1) 100%)
+
+
 
 .border-top
   &.color-primario
@@ -57,7 +69,7 @@
     // background-image: url("../assets/bg/bg2.png") !important
     background-position: bottom
   &-slider
-    background-image: url("../assets/bg/bg-slider.png") !important
+    background-image: url("../assets/bg/bg-slider.svg") !important
     background-position: bottom
 
 // Variables
@@ -97,15 +109,15 @@ $custom-card-img-height: 322px
 
 
 .acordion__header
-  background-color: lighten($color-acento-contenido, 25%) !important
+  background-color: #FFEBD0 !important
 
 .acordion__header--active
-  background-color: $color-acento-contenido !important
+  background-color: #FF9D1C !important
   h4, i
     color: #000 !important
 
 .acordion__contenido
-  background-color: lighten($color-acento-contenido, 27%) !important
+  background-color: #FFF4E6 !important
 
 
 .anexo__texto
@@ -214,14 +226,14 @@ $custom-card-img-height: 322px
 
 
 .lista-ul--color li > i:first-of-type
-  color: #453179 !important
+  color: #273603 !important
 
 .lista-ul--color.color-dark li > i:first-of-type
-  color: #453179 !important
+  color: #273603 !important
           
 
 th.bg-color-tabla
-  background-color: #453179 !important
+  background-color: #273603 !important
   color: #fff !important
 
 
